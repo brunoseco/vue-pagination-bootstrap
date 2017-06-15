@@ -1,0 +1,27 @@
+{
+  "name": "vue-pagination-bootstrap",
+  "version": "1.0.1",
+  "description": "Server-side paging component in vue, template based on bootstrap",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunoseco/vue-pagination-bootstrap.git"
+  },
+  "keywords": [
+    "vue",
+    "pagination",
+    "bootstrap",
+    "vue-pagination",
+    "paging",
+    "bue-pag"
+  ],
+  "author": "Bruno Secco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brunoseco/vue-pagination-bootstrap/issues"
+  },
+  "homepage": "https://github.com/brunoseco/vue-pagination-bootstrap#readme"
+}

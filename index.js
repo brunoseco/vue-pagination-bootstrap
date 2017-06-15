@@ -47,7 +47,13 @@ export default {
         _pageSize() { return this.pageSize },
         lastPage() {
             let _total = this._total / this._pageSize;
-            return _total >= 1 ? _total : 1;
+            if (_total < 1)
+                return 1;
+
+            if (_total % 1 != 0)
+                return parseInt(_total + 1);
+
+            return _total;
         },
         array() {
 
