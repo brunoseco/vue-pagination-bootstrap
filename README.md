@@ -1,8 +1,8 @@
 # vue-pagination-bootstrap
 Server-side paging component in vue, template based on bootstrap
 
-* [Vue.js](http://vuejs.org/) (tested with 2.x)
-* [Bootstrap CSS](http://getbootstrap.com/) (tested with 4.x)
+* [Vue.js](http://vuejs.org/) (tested with 1.x & 2.x)
+* [Bootstrap CSS](http://getbootstrap.com/) (tested with 3.x & 4.x)
 
 ### Installation
 
@@ -15,8 +15,8 @@ $ npm install vue-pagination-bootstrap
 import pagination from 'vue-pagination-bootstrap'
     
 new Vue({
-  el: '#app',,
-  components: { pagination }
+  el: '#app',
+  components: { pagination },
   data () {
     return {
       total: 1000,
@@ -50,6 +50,7 @@ new Vue({
 | total         | Number   |         | true     | Total itens in server side
 | pageSize      | Number   |         | true     | Number of itens in page
 | callback      | Function |         | true     | Callback function used to load data for selected page
+| options       | Object   |         | false    | An configuration object to overwrite the defaults [options](#options) of the pagination
 
 ##### Options
 | Name                | String  | Default     | Description
