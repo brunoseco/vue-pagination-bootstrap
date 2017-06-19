@@ -50,7 +50,7 @@ new Vue({
 | total         | Number   |         | true     | Total items in server side
 | pageSize      | Number   |         | true     | Number of items in page
 | callback      | Function |         | true     | Callback function used to load data for the selected page
-| options       | Object   |         | false    | An configuration object to overwrite the defaults [options](#options) of the pagination
+| options       | Object   |         | false    | A configuration object to overwrite the defaults [options](#options) of the pagination
 
 ##### Options
 | Name                | String  | Default     | Description
