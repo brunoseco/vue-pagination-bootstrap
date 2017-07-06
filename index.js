@@ -1,7 +1,7 @@
 export default {
-    template: `<nav>
-        <ul class="pagination justify-content-center">
-            <li v-if="showPrevious()" :class="{ 'disabled' : currentPage <= 1 }" class="page-item">
+    template: `<nav :class="[navClass]">
+        <ul class="pagination justify-content-center" :class="[ulClass]">
+            <li v-if="showPrevious()" :class="[liClass, { 'disabled' : currentPage <= 1 }]" class="page-item">
                 <a class="page-link" href="#" v-if="currentPage <= 1">
                     <span aria-hidden="true">{{ config.previousText }}</span>
                 </a>
@@ -9,10 +9,10 @@ export default {
                     <span aria-hidden="true">{{ config.previousText }}</span>
                 </a>
             </li>
-            <li v-for="num in array" :class="{ 'active': num === currentPage }" class="page-item">
+            <li v-for="num in array" :class="[liClass, { 'active': num === currentPage }]" class="page-item">
                 <a class="page-link" href="#" @click.prevent="changePage(num)">{{ num }}</a>
             </li>
-            <li v-if="showNext()" :class="{ 'disabled' : currentPage === lastPage || lastPage === 0 }" class="page-item">
+            <li v-if="showNext()" :class="[liClass, { 'disabled' : currentPage === lastPage || lastPage === 0 }]" class="page-item">
                 <a class="page-link" href="#" v-if="currentPage === lastPage || lastPage === 0">
                     <span aria-hidden="true">{{ config.nextText }}</span>
                 </a>
@@ -38,6 +38,18 @@ export default {
         options: {
             type: Object
         },
+        navClass:{
+            type: String,
+            default: ""
+        },
+        ulClass:{
+            type: String,
+            default: ""
+        },
+        liClass:{
+            type: String,
+            default: ""
+        }
     },
     data() {
         return { currentPage: 1 }

@@ -1,8 +1,8 @@
 # vue-pagination-bootstrap
 Server-side paging component in vue, template based on bootstrap
 
-* [Vue.js](http://vuejs.org/) (tested with 1.x & 2.x)
-* [Bootstrap CSS](http://getbootstrap.com/) (tested with 3.x & 4.x)
+* [Vue.js](http://vuejs.org/) (tested with 2.x)
+* [Bootstrap CSS](http://getbootstrap.com/) (tested with 4.x)
 
 ### Installation
 
@@ -15,14 +15,14 @@ $ npm install vue-pagination-bootstrap
 import pagination from 'vue-pagination-bootstrap'
     
 new Vue({
-  el: '#app',
-  components: { pagination },
+  el: '#app',,
+  components: { pagination }
   data () {
     return {
       total: 1000,
       pageSize: 50,
       paginationOptions: { // Not required to pass this configurations
-	offset: 2,
+		    offset: 2,
         previousText: 'Prev',
         nextText: 'Next',
         alwaysShowPrevNext: true
@@ -31,8 +31,8 @@ new Vue({
   },
   methods: {
     pageChanged (page) {            
-    	console.log(page)
-      	// Exec your response to server passing 'page' params as clicked button paging
+      console.log(page)
+      // Exec your response to server passing 'page' params as clicked button paging
     }
   }
 })
@@ -40,17 +40,20 @@ new Vue({
 
 ```html
 <body id="app">
-  <pagination :total="total" :page-size="pageSize" :callback="pageChanged" :options="paginationOptions"></pagination>
+  <pagination :total="total" :page-size="pageSize" :callback="pageChanged" :options="paginationOptions" nav-class="padding-10" ul-class="bg-color-red" li-class="txt-color-blue">
+  </pagination>
 </body>
 ```
 
 #### Props
 | Name          | Type     | Default | Required | Description
 | :------------ | :--------| :-------| :--------| :-----------
-| total         | Number   |         | true     | Total items in server side
-| pageSize      | Number   |         | true     | Number of items in page
-| callback      | Function |         | true     | Callback function used to load data for the selected page
-| options       | Object   |         | false    | A configuration object to overwrite the defaults [options](#options) of the pagination
+| total         | Number   |         | true     | Total itens in server side
+| pageSize      | Number   |         | true     | Number of itens in page
+| callback      | Function |         | true     | Callback function used to load data for selected page
+| nav-class     | String   |         | false    | Class will be include in nav element
+| ul-class      | String   |         | false    | Class will be include in ul element
+| li-class      | String   |         | false    | Class will be include in all li element
 
 ##### Options
 | Name                | String  | Default     | Description
