@@ -1,28 +1,32 @@
 export default {
     template: `<nav :class="[navClass]">
         <ul class="pagination justify-content-center" :class="[ulClass]">
-            <li v-if="showPrevious()" :class="[liClass, { 'disabled' : currentPage <= 1 }]" class="page-item">
-                <a class="page-link" href="#" v-if="currentPage <= 1">
+            <li v-if="showPrevious()" :class="[liClass, { 'disabled' : internalCurrentPage <= 1 }]" class="page-item">
+                <a class="page-link" href="#" v-if="internalCurrentPage <= 1">
                     <span aria-hidden="true">{{ config.previousText }}</span>
                 </a>
-                <a class="page-link" href="#" v-if="currentPage > 1 " :aria-label="config.ariaPrevious" @click.prevent="changePage(currentPage - 1)">
+                <a class="page-link" href="#" v-if="internalCurrentPage > 1 " :aria-label="config.ariaPrevious" @click.prevent="changePage(internalCurrentPage - 1)">
                     <span aria-hidden="true">{{ config.previousText }}</span>
                 </a>
             </li>
-            <li v-for="num in array" :class="[liClass, { 'active': num === currentPage }]" class="page-item">
+            <li v-for="num in array" :class="[liClass, { 'active': num === internalCurrentPage }]" class="page-item">
                 <a class="page-link" href="#" @click.prevent="changePage(num)">{{ num }}</a>
             </li>
-            <li v-if="showNext()" :class="[liClass, { 'disabled' : currentPage === lastPage || lastPage === 0 }]" class="page-item">
-                <a class="page-link" href="#" v-if="currentPage === lastPage || lastPage === 0">
+            <li v-if="showNext()" :class="[liClass, { 'disabled' : internalCurrentPage === lastPage || lastPage === 0 }]" class="page-item">
+                <a class="page-link" href="#" v-if="internalCurrentPage === lastPage || lastPage === 0">
                     <span aria-hidden="true">{{ config.nextText }}</span>
                 </a>
-                <a class="page-link" href="#" v-if="currentPage < lastPage" :aria-label="config.ariaNext" @click.prevent="changePage(currentPage + 1)">
+                <a class="page-link" href="#" v-if="internalCurrentPage < lastPage" :aria-label="config.ariaNext" @click.prevent="changePage(internalCurrentPage + 1)">
                     <span aria-hidden="true">{{ config.nextText }}</span>
                 </a>
             </li>
         </ul>
     </nav>`,
     props: {
+        currentPage: {
+              type: Number,
+              default: 1
+        },
         total: {
             type: Number,
             required: true
@@ -52,7 +56,15 @@ export default {
         }
     },
     data() {
-        return { currentPage: 1 }
+        return { internalCurrentPage: 1 }
+    },
+    watch: {
+        currentPage: {
+            immediate: true,
+            handler(val) {
+                this.internalCurrentPage = val;
+          }
+        }
     },
     computed: {
         _total() { return this.total },
@@ -69,7 +81,7 @@ export default {
         },
         array() {
 
-            let _from = this.currentPage - this.config.offset;
+            let _from = this.internalCurrentPage - this.config.offset;
             if (_from < 1)
                 _from = 1;
 
@@ -98,14 +110,14 @@ export default {
     },
     methods: {
         showPrevious() {
-            return this.config.alwaysShowPrevNext || this.currentPage > 1;
+            return this.config.alwaysShowPrevNext || this.internalCurrentPage > 1;
         },
         showNext() {
-            return this.config.alwaysShowPrevNext || this.currentPage < this.lastPage;
+            return this.config.alwaysShowPrevNext || this.internalCurrentPage < this.lastPage;
         },
         changePage(page) {
-            if (this.currentPage === page) return;
-            this.currentPage = page;
+            if (this.internalCurrentPage === page) return;
+            this.internalCurrentPage = page;
             this.callback(page);
         }
     }
